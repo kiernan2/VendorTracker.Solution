@@ -12,7 +12,7 @@ namespace VendorTracker
 
     public Startup(IWebHostEnvironment env)
     {
-      IConfigurationRoot builder = new ConfigurationBuilder()
+      IConfigurationBuilder builder = new ConfigurationBuilder()
         .SetBasePath(env.ContentRootPath)
         .AddEnvironmentVariables();
       Configuration = builder.Build();

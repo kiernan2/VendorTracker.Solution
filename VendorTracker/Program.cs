@@ -5,7 +5,7 @@ namespace VendorTracker
 {
   public class Program
   {
-    public static void Main(static[] args)
+    public static void Main(string[] args)
     {
       IWebHost host = new WebHostBuilder()
         .UseKestrel()

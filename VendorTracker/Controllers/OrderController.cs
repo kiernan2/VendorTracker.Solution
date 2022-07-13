@@ -10,7 +10,7 @@ namespace VendorTracker.Controllers
     [HttpPost("/order/delete")]
     public ActionResult DeleteAll()
     {
-      Item.ClearAll();
+      Order.ClearAll();
       return View();
     }
 
@@ -26,7 +26,7 @@ namespace VendorTracker.Controllers
     {
       Order order = Order.Find(orderId);
       Vendor vendor = Vendor.Find(vendorId);
-      Directory<string, object> myDictionary = new Directory<string, object>();
+      Dictionary<string, object> myDictionary = new Dictionary<string, object>();
       myDictionary.Add("order", order);
       myDictionary.Add("vendor", vendor);
       return View(myDictionary);
