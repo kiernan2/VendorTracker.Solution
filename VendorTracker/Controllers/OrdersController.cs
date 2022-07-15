@@ -17,17 +17,15 @@ namespace VendorTracker.Controllers
     [HttpPost("/vendor/{vendorId}")]
     public ActionResult Create(int vendorId, string orderDetails)
     {
-      Console.WriteLine("test5:" + vendorId);
       Vendor vendor = Vendor.Find(vendorId);
       Order order = new Order(orderDetails);
       vendor.AddOrder(order);
-      return RedirectToAction("Show","Vendor");
+      return RedirectToAction("Show","Vendor", new { id = vendorId });
     }
 
     [HttpGet("/vendor/{vendorId}/orders/new")]
     public ActionResult New(int vendorId, string orderDetails)
     {
-      Console.WriteLine("test3:" + vendorId);
       Vendor vendor = Vendor.Find(vendorId);
       return View(vendor);
     }
@@ -35,7 +33,6 @@ namespace VendorTracker.Controllers
     [HttpGet("/vendor/{vendorId}/orders/{orderId}")]
     public ActionResult Show(int vendorId, int orderId)
     {
-      Console.WriteLine("test4:" + vendorId);
       Order order = Order.Find(orderId);
       Vendor vendor = Vendor.Find(vendorId);
       Dictionary<string, object> myDictionary = new Dictionary<string, object>();

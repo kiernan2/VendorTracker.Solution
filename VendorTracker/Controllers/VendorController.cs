@@ -31,7 +31,6 @@ namespace VendorTracker.Controllers
     [HttpGet("/vendor/{id}")]
     public ActionResult Show(int id)
     {
-      Console.WriteLine("test7:" + id);
       Vendor selectedVendor = Vendor.Find(id);
       return View(selectedVendor);
     }

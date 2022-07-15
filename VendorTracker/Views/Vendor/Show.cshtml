@@ -6,11 +6,10 @@
 <ol>
   @foreach (Order order in @Model.Orders)
   {
-    Console.WriteLine("test2:" + @order.Id);
     <li><a href="/vendor/@Model.Id/orders/@order.Id">@order.Details</a></li>
   }
 </ol>
 
-<p><a href='vendor/@Model["vendor"].Id/orders/new'>Add a new Order</a></p>
+<p><a href='/vendor/@Model.Id/orders/new'>Add a new Order</a></p>
 <p><a href="/vendor">Return to Vendor list</a></p>
 <p><a href="/">Return to Main Page</a></p>
