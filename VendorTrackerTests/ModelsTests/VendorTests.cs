@@ -48,7 +48,7 @@ namespace VendorTracker.TestTools
       string name01 = "Work";
       string name02 = "School";
       Vendor newVendor1 = new Vendor(name01);
-      Vendor newVendor1 = new Vendor(name02);
+      Vendor newVendor2 = new Vendor(name02);
 
       Vendor result = Vendor.Find(2);
 

@@ -31,15 +31,16 @@ namespace VendorTracker.Controllers
     [HttpGet("/vendor/{id}")]
     public ActionResult Show(int id)
     {
+      Console.WriteLine("test7:" + id);
       Vendor selectedVendor = Vendor.Find(id);
       return View(selectedVendor);
     }
 
-    [HttpPost("/vendor/{vendorId}/order")]
-    public ActionResult Create(int vendorId, string orderDescription)
+    [HttpPost("/vendor/{vendorId}/orders")]
+    public ActionResult Create(int vendorId, string orderDetails)
     {
       Vendor foundVendor = Vendor.Find(vendorId);
-      Order newOrder = new Order(orderDescription);
+      Order newOrder = new Order(orderDetails);
       foundVendor.AddOrder(newOrder);
       return View("Show", foundVendor);
     }

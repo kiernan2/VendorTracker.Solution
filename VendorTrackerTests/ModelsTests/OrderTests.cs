@@ -33,7 +33,7 @@ namespace VendorTracker.Models
       List<Order> result = Order.GetAll();
       foreach (Order thisOrder in result)
       {
-        Console.WriteLine(""Output from empty list GetAll test: " + thisItem.Details")
+        Console.WriteLine("Output from empty list GetAll test: " + thisOrder.Details);
       }
       CollectionAssert.AreEqual(newList, result);
     }

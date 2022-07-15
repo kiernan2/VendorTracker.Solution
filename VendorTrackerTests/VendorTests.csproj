@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="..\VendorTracker\VendorTracer.csproj" />
-  <ItemGroup>
+    <ProjectReference Include="..\VendorTracker\VendorTracker.csproj" />
+  </ItemGroup>
 
 </Project>

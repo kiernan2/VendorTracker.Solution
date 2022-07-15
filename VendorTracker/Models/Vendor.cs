@@ -25,6 +25,7 @@ namespace VendorTracker.Models
 
     public static Vendor Find(int searchId)
     {
+      Console.WriteLine("test6:" + (searchId - 1));
       return _instances[searchId - 1];
     }
 
