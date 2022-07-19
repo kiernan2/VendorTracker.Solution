@@ -1,7 +1,10 @@
+@using VendorTracker.Models;
+@using System;
+
 <h1>Order Details:</h1>
 
 <h2>@Model["order"].Details</h2>
 <h3>Vendor: @Model["vendor"].Name</h3>
 
-<a href="/orders/new">Add another item</a>
-<a href="/orders">View all orders</a>
+<a href='/vendor/@Model["vendor"].Id/orders/new'>Add another order</a>
+<a href='/vendor/@Model["vendor"].Id'>View all orders</a>
