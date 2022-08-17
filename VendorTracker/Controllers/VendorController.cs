@@ -39,7 +39,8 @@ namespace VendorTracker.Controllers
     public ActionResult Create(int vendorId, string orderDetails)
     {
       Vendor foundVendor = Vendor.Find(vendorId);
-      Order newOrder = new Order(orderDetails);
+      VenOrder newOrder = new VenOrder(orderDetails);
+      newOrder.Save();
       foundVendor.AddOrder(newOrder);
       return View("Show", foundVendor);
     }

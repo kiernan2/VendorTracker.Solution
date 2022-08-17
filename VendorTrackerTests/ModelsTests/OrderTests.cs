@@ -10,7 +10,7 @@ namespace VendorTracker.Models
   {
     public void Dispose()
     {
-      Order.ClearAll();
+      VenOrder.ClearAll();
     }
 
     public OrderTests()
@@ -21,16 +21,16 @@ namespace VendorTracker.Models
     [TestMethod]
     public void GetAll_ReturnsEmptyListFromDatabase_OrderList()
     {
-      List<Order> newList = new List<Order>();
-      List<Order> result = Order.GetAll();
+      List<VenOrder> newList = new List<VenOrder>();
+      List<VenOrder> result = Order.GetAll();
       CollectionAssert.AreEqual(newList, result);
     }
 
     [TestMethod]
     public void Equals_ReturnsTrueIfDescriptionsAreTheSame_Order()
     {
-      Order firstOrder = new Order("Mow the lawn");
-      Order secondOrder = new Order("Mow the lawn");
+      VenOrder firstOrder = new VenOrder("Mow the lawn");
+      VenOrder secondOrder = new VenOrder("Mow the lawn");
 
       Assert.AreEqual(firstOrder, secondOrder);
     }
@@ -40,13 +40,13 @@ namespace VendorTracker.Models
     {
       string details01 = "Walk the dog";
       string details02 = "Wash the dishes";
-      Order newOrder1 = new Order(details01);
+      VenOrder newOrder1 = new VenOrder(details01);
       newOrder1.Save();
-      Order newOrder2 = new Order(details02);
+      VenOrder newOrder2 = new VenOrder(details02);
       newOrder2.Save();
-      List<Order> newList = new List<Order> { newOrder1, newOrder2 };
-      List<Order> result = Order.GetAll();
-      foreach(Order thisOrder in result)
+      List<VenOrder> newList = new List<VenOrder> { newOrder1, newOrder2 };
+      List<VenOrder> result = Order.GetAll();
+      foreach(VenOrder thisOrder in result)
       {
         Console.WriteLine("Output from second GetAll test: " + thisOrder.Details);
       }
@@ -57,9 +57,9 @@ namespace VendorTracker.Models
     public void GetId_OrderInstantiateWithAnIdAndGetterReturns_Int()
     {
       string details = "Walk the dog.";
-      Order newOrder = new Order(details);
+      VenOrder newOrder = new VenOrder(details);
       newOrder.Save();
-      Order foundOrder = Order.Find(newOrder.Id);
+      VenOrder foundOrder = Order.Find(newOrder.Id);
       Assert.AreEqual(foundOrder.Id, newOrder.Id);
     }
 

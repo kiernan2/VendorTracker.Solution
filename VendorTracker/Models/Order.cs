@@ -1,32 +1,33 @@
 using System.Collections.Generic;
 using System;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace VendorTracker.Models
 {
-  public class Order
+  public class VenOrder
   {
     public string Details { get; set; }
     public int Id { get; set; }
     
-    public Order (string details)
+    public VenOrder (string details)
     {
       Details = details;
     }
 
-    public Order (string details, int id)
+    public VenOrder (string details, int id)
     {
       Details = details;
       Id = id;
     }
     
-    public static Order Find(int searchId)
+    public static VenOrder Find(int searchId)
     {
       MySqlConnection conn = DB.Connection();
       conn.Open();
 
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = "SELECT * FROM items WHERE id = @ThisId;";
+      cmd.CommandText = "SELECT * FROM Orders WHERE id = @ThisId;";
 
       MySqlParameter param = new MySqlParameter();
       param.ParameterName = "@ThisId";
@@ -41,7 +42,7 @@ namespace VendorTracker.Models
         orderId = rdr.GetInt32(0);
         orderDetails = rdr.GetString(1);
       }
-      Order foundOrder = new Order(orderDetails, orderId);
+      VenOrder foundOrder = new VenOrder(orderDetails, orderId);
 
       conn.Close();
       if (conn != null)
@@ -57,7 +58,7 @@ namespace VendorTracker.Models
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
 
-      cmd.CommandText = "INSERT INTO Orders (Details) VALUES (@OrderDetails);";
+      cmd.CommandText = "INSERT INTO orders (details) VALUES (@OrderDetails);";
       MySqlParameter param = new MySqlParameter();
       param.ParameterName = "@OrderDetails";
       param.Value = this.Details;
@@ -74,21 +75,22 @@ namespace VendorTracker.Models
 
     public override bool Equals(System.Object otherOrder)
     {
-      if (!(otherOrder is Order))
+      if (!(otherOrder is VenOrder))
       {
         return false;
       }
       else
       {
-        Order newOrder = (Order) otherOrder;
-        bool idEquality = (this.Id == newOrder.Id);
+        VenOrder newOrder = (VenOrder) otherOrder;
+        // bool idEquality = (this.Id == newOrder.Id);
         bool descriptionEquality = (this.Details == newOrder.Details);
-        return (idEquality && descriptionEquality);
+        return (descriptionEquality);
       }
     }
 
     public static void ClearAll()
     {
+      Debug.WriteLine("In ClearAll");
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
@@ -101,9 +103,9 @@ namespace VendorTracker.Models
       }
     }
 
-    public static List<Order> GetAll()
+    public static List<VenOrder> GetAll()
     {
-      List<Order> allOrders = new List<Order>();
+      List<VenOrder> allOrders = new List<VenOrder>();
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
@@ -113,7 +115,7 @@ namespace VendorTracker.Models
       {
         int orderId = rdr.GetInt32(0);
         string orderDetails = rdr.GetString(1);
-        Order newOrder = new Order(orderDetails, orderId);
+        VenOrder newOrder = new VenOrder(orderDetails, orderId);
         allOrders.Add(newOrder);
       }
       conn.Close();

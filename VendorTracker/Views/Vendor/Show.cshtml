@@ -4,7 +4,7 @@
 <h3>Here are all the Orders for this Vendor:</h3>
 
 <ol>
-  @foreach (Order order in @Model.Orders)
+  @foreach (VenOrder order in @Model.Orders)
   {
     <li><a href="/vendor/@Model.Id/orders/@order.Id">@order.Details</a></li>
   }

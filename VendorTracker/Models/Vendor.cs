@@ -8,17 +8,17 @@ namespace VendorTracker.Models
     public string Name { get; set; }
     public int Id { get; }
     private static List<Vendor> _instances = new List<Vendor>();
-    public List<Order> Orders { get; set; }
+    public List<VenOrder> Orders { get; set; }
 
     public Vendor(string name)
     {
       Name = name;
       _instances.Add(this);
       Id = _instances.Count;
-      Orders = new List<Order>();
+      Orders = new List<VenOrder>();
     }
 
-    public void AddOrder(Order order)
+    public void AddOrder(VenOrder order)
     {
       Orders.Add(order);
     }

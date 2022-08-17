@@ -5,3 +5,7 @@
 <h1>Welcome to the Vendor List!</h1>
 <h3><a href="/vendor">View Vendor</a></h3>
 <h3><a href="/vendor/new">Add a new Vendor</a></h3>
+<form action="/orders/delete" method="post">
+  <button type="submit" name="button">Clear All Items</button>
+  @* <h3><a onclick="this.parentNode.submit();">Delete All</a></h3> *@
+</form>
